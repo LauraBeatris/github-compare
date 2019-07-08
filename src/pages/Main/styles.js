@@ -73,9 +73,12 @@ export const HeaderStyled = styled.header`
   }
 
   @media screen and (max-width: 45rem) {
+    min-width: 40rem;
+    padding: 1rem 1rem;
+
     img {
       width: 9rem;
-      margin-right: 2rem;
+      margin: 0 1rem;
     }
     #user-input {
       width: 17rem;
