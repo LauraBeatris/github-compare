@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import moment from "moment";
+import { HeaderStyled, Container } from "./styles";
+import "font-awesome/css/font-awesome.css";
 import List from "../../components/List/List";
 import Logo from "../../assets/logo.png";
 import api from "../../services/api";
-import { HeaderStyled, Container } from "./styles";
 
 export default class Main extends Component {
   state = {
+    loading: false,
+    repositoryError: false,
     repositoryInput: "",
     repositories: []
   };
@@ -20,36 +24,56 @@ export default class Main extends Component {
   handleAddRepository = async event => {
     event.preventDefault();
 
+    // Beggining --> Setting the loading to true
+    this.setState({ loading: true });
+
     try {
       // Getting the data from api
-      const response = await api.get(`/repos/${this.state.repositoryInput}`);
 
+      // Destructuring the response and getting the data
+      const { data: repository } = await api.get(
+        `/repos/${this.state.repositoryInput}`
+      );
+
+      // Creating a new field with the format date
+      repository.lastCommit = moment(repository.pushed_at).fromNow();
+
+      // Updating the state with the new repository data
       this.setState({
         repositoryInput: "",
-        repositories: [...this.state.repositories, response.data]
+        repositoryError: false,
+        repositories: [...this.state.repositories, repository]
       });
     } catch (err) {
-      console.log(err);
+      // Showing errors
+      this.setState({ repositoryError: true });
+    } finally {
+      this.setState({ loading: false });
     }
   };
 
   render() {
     return (
       <Container>
-        <HeaderStyled>
+        <HeaderStyled withError={this.state.repositoryError}>
           <img src={Logo} alt="logo" className="logo" />
+
           <form onSubmit={this.handleAddRepository}>
             <input
               type="text"
               name="user"
               id="user-input"
-              placeholder="type a github user"
+              placeholder="github user/repository"
               value={this.state.repositoryInput}
               onChange={this.handleChange}
             />
             <button type="submit" id="add-user">
               {" "}
-              Search{" "}
+              {this.state.loading ? (
+                <i className="fa fa-spinner fa-pulse" />
+              ) : (
+                "Search"
+              )}{" "}
             </button>
           </form>
         </HeaderStyled>

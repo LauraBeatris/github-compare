@@ -20,7 +20,6 @@ export const HeaderStyled = styled.header`
     padding: 1rem 1rem;
     width: 32rem;
     margin-right: 1rem;
-    border: solid 2px #c5d6ef;
     background-color: #ffffff;
     text-align: left;
     font-size: 2rem;
@@ -28,6 +27,9 @@ export const HeaderStyled = styled.header`
     color: #676767;
     font-family: inherit;
     box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.18);
+
+    border: ${props =>
+      props.withError ? "solid 2px tomato" : "solid 2px #c5d6ef"};
   }
 
   #user-input::placeholder {
@@ -39,6 +41,7 @@ export const HeaderStyled = styled.header`
   }
 
   #add-user {
+    width: 80px;
     padding: 0 1rem;
     border-radius: 10px;
     background-color: tomato;
