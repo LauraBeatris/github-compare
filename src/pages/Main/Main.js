@@ -52,6 +52,31 @@ export default class Main extends Component {
     }
   };
 
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem("repositories");
+      // Turning the json into objects
+      const repositories = JSON.parse(json);
+
+      // Checking if isn't null
+      if (repositories) {
+        // Setting the state to the currently array of repositories
+        this.setState({ repositories });
+      }
+    } catch (err) {
+      //Do nothing at all
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // First step --> Verifying if the data real changed
+    if (prevState.repositories.length !== this.state.repositories.length) {
+      // Turning the objects into json
+      const json = JSON.stringify(this.state.repositories);
+      localStorage.setItem("repositories", json);
+    }
+  }
+
   render() {
     return (
       <Container>
