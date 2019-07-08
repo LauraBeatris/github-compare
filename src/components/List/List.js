@@ -1,15 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container, Repository } from "./styles";
+import remove from "../../assets/delete.svg";
+import refresh from "../../assets/sync-alt-solid.svg";
 
-const List = ({ repositories }) => (
+const List = ({ repositories, handleRefreshRepo, handleRemoveRepo }) => (
   <Container>
     {repositories.map(repository => (
       <Repository key={repository.id}>
         <header>
-          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+          <img
+            id="icon"
+            src={repository.owner.avatar_url}
+            alt={repository.owner.login}
+          />
           <strong>{repository.name}</strong>
           <small>{repository.owner.login}</small>
+          <div className="repository_buttons">
+            <img
+              onClick={e => {
+                handleRemoveRepo(repository.id);
+              }}
+              id="remove"
+              src={remove}
+              alt="remove-button"
+            />
+            <img
+              onClick={handleRefreshRepo}
+              id="refresh"
+              src={refresh}
+              alt="refresh-button"
+            />
+          </div>
         </header>
 
         <ul>

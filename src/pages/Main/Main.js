@@ -52,6 +52,47 @@ export default class Main extends Component {
     }
   };
 
+  // Removing individual repositories
+  handleRemoveRepo = async id => {
+    // Filtering comparing with the id
+    this.setState(prevState => ({
+      repositories: prevState.repositories.filter(
+        repository => id !== repository.id
+      )
+    }));
+
+    // Setting the new array of repositories on local storage
+    localStorage.setItem(
+      "repositories",
+      JSON.stringify(this.state.repositories)
+    );
+  };
+
+  // Updating the data of individual repositories
+  handleRefreshRepo = id => {
+    const { repositories } = this.state;
+
+    // Getting the repository of the target
+    const repository = repositories.find(repo => repo.id === id);
+
+    try {
+      const { data } = api.get(`/repos/${repository.full_name}`);
+
+      data.lastCommit = moment(data.pushed_at).fromNow();
+
+      this.setState({
+        repositoryError: false,
+        repositoryInput: "",
+        // If the repo is equal to the target, we'll replace on the currently array
+        repositories: repositories.map(repo =>
+          repo.id === data.id ? data : repo
+        )
+      });
+    } catch {
+      this.setState({ repositoryError: true });
+    }
+  };
+
   componentDidMount() {
     try {
       const json = localStorage.getItem("repositories");
@@ -103,7 +144,11 @@ export default class Main extends Component {
           </form>
         </HeaderStyled>
 
-        <List repositories={this.state.repositories} />
+        <List
+          repositories={this.state.repositories}
+          handleRefreshRepo={this.handleRefreshRepo}
+          handleRemoveRepo={this.handleRemoveRepo}
+        />
       </Container>
     );
   }

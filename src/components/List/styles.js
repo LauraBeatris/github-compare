@@ -23,15 +23,42 @@ export const Repository = styled.div`
   padding: 5rem 5rem;
 
   header {
-    padding: 30px;
+    padding: 0 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    img {
+    img#icon {
       width: 146px;
       height: 144px;
       margin-bottom: 0.5rem;
+    }
+
+    .repository_buttons {
+      display: flex;
+      flex-direction: row;
+      margin: 1.3rem auto;
+
+      img {
+        &:first-child {
+          margin-right: 1rem;
+        }
+        transition: all 0.5s;
+        width: 2rem;
+
+        &:hover,
+        &:active {
+          cursor: pointer;
+        }
+
+        &:hover {
+          transform: translateY(-4px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
     }
 
     small,
