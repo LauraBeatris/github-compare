@@ -70,7 +70,7 @@ export const Repository = styled.div`
   }
 
   @media screen and (max-width: 45rem) {
-    margin: 1rem auto;
+    margin: 1rem 0.5rem;
 
     &:nth-child(2n - 1) {
       margin-right: 1.4rem;
