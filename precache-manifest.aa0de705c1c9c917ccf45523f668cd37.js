@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3980d7a1125f8a2af9436b54fff7c5b9",
+    "revision": "c1eb724663535093d97f531a937e8f82",
     "url": "/github-compare/index.html"
   },
   {
-    "revision": "9e39f00bb4b4e1c29ed8",
+    "revision": "bcd25bc14bb31c1b3750",
     "url": "/github-compare/static/css/2.b08678bc.chunk.css"
   },
   {
-    "revision": "cf61b6f2debd6a616866",
+    "revision": "a4d1e713344ab8145007",
     "url": "/github-compare/static/css/main.26ce5187.chunk.css"
   },
   {
-    "revision": "9e39f00bb4b4e1c29ed8",
-    "url": "/github-compare/static/js/2.ef69ba2a.chunk.js"
+    "revision": "bcd25bc14bb31c1b3750",
+    "url": "/github-compare/static/js/2.adee9a07.chunk.js"
   },
   {
-    "revision": "cf61b6f2debd6a616866",
-    "url": "/github-compare/static/js/main.22fd40f7.chunk.js"
+    "revision": "a4d1e713344ab8145007",
+    "url": "/github-compare/static/js/main.8dd4aaad.chunk.js"
   },
   {
     "revision": "638eb0bf8b12a538e83a",
     "url": "/github-compare/static/js/runtime~main.d4e076fe.js"
+  },
+  {
+    "revision": "270d72e93d421c23d4c519692a187af4",
+    "url": "/github-compare/static/media/delete.270d72e9.svg"
   },
   {
     "revision": "674f50d287a8c48dc19ba404d20fe713",
@@ -42,5 +46,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "fee66e712a8a08eef5805a46892932ad",
     "url": "/github-compare/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  {
+    "revision": "b1b03f76273177176434141d199180c5",
+    "url": "/github-compare/static/media/sync-alt-solid.b1b03f76.svg"
   }
 ]);
